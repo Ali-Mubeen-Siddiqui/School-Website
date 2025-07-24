@@ -1,5 +1,35 @@
+<<<<<<< HEAD
 {% extends 'base.html' %}
 
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Christ Church College</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      background: #f0f2f5;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Background image layer */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://image3.mouthshut.com/images/ImagesR/2015/10/christ-church-college-lucknow-925771669-8265921-1.jpg?4809400') center/cover no-repeat;
+      opacity: 0.7; /* adjust for desired transparency */
+      z-index: -1;
+    }
+>>>>>>> 1a044700acd0cf41e13f9c7cbc77559ff1b12964
 
   {% load static %}
   {%block title%}Home{%endblock%}
@@ -7,7 +37,36 @@
 
 </head>
 <body>
+<<<<<<< HEAD
   {%block content%}
+=======
+  <header>
+    <h1>Christ Church College</h1>
+    <nav>
+      <ul>
+        <li><a href="school_site/pages/Templates/index.html">Home</a></li>
+        <li>
+          <a href="#">About</a>
+          <ul>
+            <li><a href="#">Our Vision</a></li>
+            <li><a href="#">Faculty</a></li>
+            <li><a href="#">Campus</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Academics</a>
+          <ul>
+            <li><a href="#">Programs</a></li>
+            <li><a href="#">Admissions</a></li>
+            <li><a href="#">Examinations</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+    <a href ="school_site/pages/Templates/login.html"><button class="login-btn">Login</button></a>
+  </header>
+>>>>>>> 1a044700acd0cf41e13f9c7cbc77559ff1b12964
 
   <section class="hero">
     <u><h2 style=""> Welcome to Christ Church College</h2></u>
@@ -44,6 +103,6 @@
   </section>
 
   <footer>
-    &copy; 2025 Elite School | All rights reserved!
+    &copy; 2025 Christ Church College | All rights reserved!
   </footer>
   {%endblock%}
