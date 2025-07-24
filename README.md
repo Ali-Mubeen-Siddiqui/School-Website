@@ -1,3 +1,14 @@
-I already have one of my school sites projects i was working on  so i have modified it and paste it there rate this site please.i havent assigned it to another webpages just I have made a homepage.
+**Project Status:** In Progress
 
-9.4/10- Me Ali
+**Project Description:** This project is a school site project that is currently under development. It aims to create a comprehensive online presence for a school, including a homepage and other essential pages.
+
+**Contributors:**
+
+* **Ali Mubeen Siddiqui**: Primary developer and project lead.
+* **Abdullah Shamim**: Collaborator and co-developer.
+
+**Current Progress:** The project has made significant progress, with the homepage already completed. The next steps involve developing additional pages and integrating them into the site.
+
+**Rating:** 9.4/10 (based on current progress)
+
+**Feedback:** Your feedback is highly valued. Please rate and comment on the project to help us improve it further.
