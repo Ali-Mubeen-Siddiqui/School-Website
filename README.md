@@ -4,8 +4,8 @@
 
 **Contributors:**
 
-* **Ali Mubeen Siddiqui**: Primary developer and project lead.
-* **Abdullah Shamim**: Collaborator and co-developer.
+* **Ali Mubeen Siddiqui**: Me
+* **Abdullah Shamim**: Collaborator,Friend and co-developer.
 
 **Current Progress:** The project has made significant progress, with the homepage already completed. The next steps involve developing additional pages and integrating them into the site.
 
