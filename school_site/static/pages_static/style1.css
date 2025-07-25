@@ -2,23 +2,46 @@ body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
-    background: #f0f2f5;
+    background: #284f8a;
     position: relative;
     overflow-x: hidden;
+    
   }
 
   /* Background image layer */
   body::before {
     content: "";
     position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('https://image3.mouthshut.com/images/ImagesR/2015/10/christ-church-college-lucknow-925771669-8265921-1.jpg?4809400') center/cover no-repeat;
-    opacity: 0.7; /* adjust for desired transparency */
-    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url("front.webp") center/cover no-repeat;
+    opacity: 0.7;
+    z-index: -9999; /* Very low to ensure it stays behind everything */
+    filter: blur(5px);
+    pointer-events: none; /* Ensures no clicks interact with it */
   }
-
+  .banner-img {
+    width: 25%;
+    height: auto;
+    display: block;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  /* Move this outside the class */
+  @media (max-width: 768px) {
+    .banner-img {
+      width: 70%;
+      max-width: 100%;
+      height: auto;
+      display: block; 
+      margin-left: 0;
+      margin-right: auto;
+    }
+  }
+  
   /* Navbar */
   header {
     background: #002244;
@@ -79,6 +102,7 @@ body {
     width: 100%;
   }
 
+  
   .login-btn {
     background: transparent;
     border: 2px solid #fff;
@@ -97,20 +121,21 @@ body {
 
   /* Hero Static */
   .hero {
-    background: url('https://source.unsplash.com/1600x500/?school-building') center/cover no-repeat;
+    /* background: url("front.webp") center/cover no-repeat; */
     height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     position: relative;
+  
   }
 
   .hero::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.5);
+  background: transparent;
   }
 
   .hero h2 {
@@ -134,6 +159,15 @@ body {
     gap: 2rem;
   }
 
+  .cont{
+  background: rgba(0,0,0,0.5);
+  height: auto;
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 10px;
+  
+  }
+
   .feature {
     background: #fff;
     flex: 1;
@@ -151,40 +185,7 @@ body {
     margin-top: 0;
   }
 
-  /* Contact */
-  .contact {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
-
-  .contact form {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .contact input, .contact textarea {
-    padding: 0.75rem;
-    margin: 0.5rem 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-  }
-
-  .contact button {
-    padding: 0.75rem;
-    background: #002244;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background 0.3s;
-  }
-
-  .contact button:hover {
-    background: #001833;
-  }
+ 
 
   footer {
     background: #002244;
@@ -194,9 +195,179 @@ body {
     margin-top: 3rem;
   }
 
-  header img {
-    width: 25%;
-    height: auto;
-    display: block;
-    margin-left: 0;
+
+
+/* --- Responsive Sidebar Navigation for Mobile --- */
+
+/* Hide sidebar and overlay by default */
+.sidebar,
+.sidebar-overlay {
+  display: none;
+}
+
+/* Hamburger menu styles */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1101;
+  margin-left: 1rem;
+}
+
+/* Sidebar styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 260px;
+  background: #002244;
+  color: #fff;
+  box-shadow: 2px 0 12px rgba(0,0,0,0.2);
+  z-index: 1102;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  padding-top: 2rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.active {
+  transform: translateX(0);
+  display: flex;
+}
+
+.sidebar .close-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0 0;
+}
+
+.sidebar ul li {
+  position: relative;
+}
+
+.sidebar ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  display: block;
+  font-size: 1.1rem;
+  transition: background 0.2s;
+}
+
+.sidebar ul li a:hover {
+  background: #001833;
+}
+
+.sidebar ul li ul {
+  display: none;
+  background: #001833;
+  margin-left: 1rem;
+}
+
+.sidebar ul li:hover > ul {
+  display: block;
+}
+
+/* Overlay styles */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.4);
+  z-index: 1100;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.sidebar-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Hide default nav on mobile */
+nav {
+  display: block;
+}
+
+/* Hide mobile login button by default, show on mobile */
+.login-mobile {
+  display: none;
+}
+.login-desktop {
+  display: inline-block;
+}
+
+@media (max-width: 900px) {
+  header {
+    flex-wrap: wrap;
+    padding: 1rem;
   }
+  nav {
+    display: none !important;
+  }
+  .hamburger {
+    display: block;
+  }
+  .login-btn {
+    margin-left: auto;
+    margin-right: 0;
+  }
+  header img {
+    width: 50%;
+    min-width: 120px;
+    max-width: 200px;
+  }
+  .login-desktop {
+    display: none !important;
+  }
+  .login-mobile {
+    display: block !important;
+    width: 80%;
+    margin: 2rem auto 0 auto;
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+  .features {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .hero h2 {
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+  }
+  header img {
+    width: 70%;
+    min-width: 80px;
+    max-width: 120px;
+  }
+  .login-container {
+    padding: 1rem 0.5rem;
+    margin: 2rem auto;
+  }
+}
+
+/* --- End Responsive Sidebar --- */

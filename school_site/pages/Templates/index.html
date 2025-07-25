@@ -5,10 +5,11 @@
 
   {% load static %}
   {%block title%}Home{%endblock%}
-  <link rel="stylesheet" href="{% static 'pages_static/style1.css' %}">
 
-</head>
-<body>
+  {% block extra_head %}
+  <link rel="stylesheet" href="{% static 'pages_static/style1.css' %}">
+  {% endblock %}
+
 
   {%block content%}
 
@@ -16,7 +17,8 @@
     <u><h2 style=""> Welcome to Christ Church College</h2></u>
   </section>
 
-  <section class="container">
+  <section>
+    <div  class="container cont">
    <u>
  <h2 style="color:black">Why Choose Us?</h2>
 </u>
@@ -34,17 +36,10 @@
         <p>Exchange programs and global tie-ups to help students excel worldwide.</p>
       </div>
     </div>
+  </div>
   </section>
 
-  <section class="container contact">
-    <h2>Contact Us</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Your Email" required />
-      <textarea rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </section>
+  
 
   <footer>
     &copy; 2025 Christ Church College | All rights reserved!
