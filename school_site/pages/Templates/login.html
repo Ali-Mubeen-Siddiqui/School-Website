@@ -5,6 +5,7 @@
 
 {% block extra_head %}
 <link rel="stylesheet" href="{% static 'pages_static/style2.css' %}">
+<link rel="stylesheet" href="{% static 'pages_static/style1.css' %}">
 {% endblock %}
 
 {%block content%}
@@ -12,11 +13,13 @@
   <div class="login-container">
     <h2>Login to Christ Church College </h2>
     <form>
-      <input type="text" placeholder="Username" required />
-      <input type="password" placeholder="Password" required />
+      {% csrf_token %}
+      <input type="text" placeholder="Username" name="username" required />
+      <input type="password" placeholder="Password" name="password" required />
+      <input type="text" placeholder="Student ID" name="student_id" required />
       <button type="submit">Login</button>
     </form>
-    <p class="note">Students | Teachers | Principal</p>
+    <p class="note">Only for students and staff of Christ Church College</p>
   </div>
 
   <!-- Footer -->

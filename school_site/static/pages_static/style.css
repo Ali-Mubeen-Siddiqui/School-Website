@@ -1,0 +1,235 @@
+/* Common CSS for all pages - Navbar and Sidebar */
+
+/* Navbar */
+header {
+  background: #002244;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header h1 {
+  margin: 0;
+}
+
+nav {
+  position: relative;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  position: relative;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  display: block;
+}
+
+nav ul li:hover {
+  background: #001833;
+}
+
+nav ul li ul {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #002244;
+  display: none;
+  min-width: 180px;
+}
+
+nav ul li:hover ul {
+  display: block;
+}
+
+nav ul li ul li {
+  width: 100%;
+}
+
+.login-btn {
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-left: 1rem;
+  transition: background 0.3s, color 0.3s;
+}
+
+.login-btn:hover {
+  background: #fff;
+  color: #002244;
+}
+
+/* Responsive Sidebar Navigation for Mobile */
+
+/* Hide sidebar and overlay by default */
+.sidebar,
+.sidebar-overlay {
+  display: none;
+}
+
+/* Hamburger menu styles */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1101;
+  margin-left: 1rem;
+}
+
+/* Sidebar styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 260px;
+  background: #002244;
+  color: #fff;
+  box-shadow: 2px 0 12px rgba(0,0,0,0.2);
+  z-index: 1102;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  padding-top: 2rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.active {
+  transform: translateX(0);
+  display: flex;
+}
+
+.sidebar .close-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0 0;
+}
+
+.sidebar ul li {
+  position: relative;
+}
+
+.sidebar ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  display: block;
+  font-size: 1.1rem;
+  transition: background 0.2s;
+}
+
+.sidebar ul li a:hover {
+  background: #001833;
+}
+
+.sidebar ul li ul {
+  display: none;
+  background: #001833;
+  margin-left: 1rem;
+}
+
+.sidebar ul li:hover > ul {
+  display: block;
+}
+
+/* Overlay styles */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.4);
+  z-index: 1100;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.sidebar-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Hide default nav on mobile */
+nav {
+  display: block;
+}
+
+/* Hide mobile login button by default, show on mobile */
+.login-mobile {
+  display: none;
+}
+.login-desktop {
+  display: inline-block;
+}
+
+@media (max-width: 900px) {
+  header {
+    flex-wrap: wrap;
+    padding: 1rem;
+  }
+  nav {
+    display: none !important;
+  }
+  .hamburger {
+    display: block;
+  }
+  .login-btn {
+    margin-left: auto;
+    margin-right: 0;
+  }
+  header img {
+    width: 50%;
+    min-width: 120px;
+    max-width: 200px;
+  }
+  .login-desktop {
+    display: none !important;
+  }
+  .login-mobile {
+    display: block !important;
+    width: 80%;
+    margin: 2rem auto 0 auto;
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  header img {
+    width: 70%;
+    min-width: 80px;
+    max-width: 120px;
+  }
+} 

@@ -8,6 +8,7 @@
 
   {% block extra_head %}
   <link rel="stylesheet" href="{% static 'pages_static/style1.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   {% endblock %}
 
 
@@ -17,31 +18,156 @@
     <u><h2 style=""> Welcome to Christ Church College</h2></u>
   </section>
 
-  <section>
-    <div  class="container cont">
-   <u>
- <h2 style="color:black">Why Choose Us?</h2>
-</u>
-    <div class="features">
-      <div class="feature">
-        <h3>Experienced Faculty</h3>
-        <p>Our teachers are industry leaders dedicated to student growth and success.</p>
-      </div>
-      <div class="feature">
-        <h3>Modern Facilities</h3>
-        <p>State-of-the-art labs, libraries, and smart classrooms for holistic learning.</p>
-      </div>
-      <div class="feature">
-        <h3>Global Opportunities</h3>
-        <p>Exchange programs and global tie-ups to help students excel worldwide.</p>
-      </div>
+  <section class="container cont cardm">
+    <div class="about-image">
+      <img src="{% static 'school1.jpg' %}" alt="Christ Church College" />
     </div>
-  </div>
+    <div class="about-text">
+      <u><h2 class="heal2"></h2></u>
+      <p>
+        Christ Church College is a vibrant and inclusive community of learners, dedicated to providing a world-class education that prepares students for success in an ever-changing world. Our rigorous academic programs, combined with a rich array of extracurricular activities, foster a well-rounded education that cultivates intellectual curiosity, creativity, and critical thinking. With a strong emphasis on character development and spiritual growth, we strive to inspire our students to become compassionate, responsible, and engaged global citizens. Our state-of-the-art facilities, experienced faculty, and supportive staff create a nurturing environment that encourages students to explore their full potential, pursue their passions, and achieve their dreams.
+      </p>
+    </div>
+  </section>
+  
+  <section class="container cont cardm">
+    <div class="about-text">
+      <h2 class="heal2">A Few Words from the College Captain</h2>
+      <blockquote class="capt-quote">
+        "It is my honor to represent such a vibrant and determined student body.
+        Christ Church College is not just a place of academic learning but a
+        nurturing ground for leadership, discipline, creativity, and growth. Every
+        student here is encouraged to explore their full potential and contribute
+        positively to the community. Let us continue striving for excellence,
+        together."
+      </blockquote>
+      <p class="capt-name">— Prajju Bhaiyya , 2024</p>
+    </div>
+  
+    <div class="capt-image">
+      <img src="{% static 'pages_static/college_captain.jpg' %}" alt="College Captain" loading="lazy"/>
+    </div>
   </section>
 
+  <!-- Faculty Section -->
+  <section class="container cont cardm">
+    <div class="about-text">
+      <h2 class="heal2">Our Distinguished Faculty</h2>
+      <p>
+        Our faculty comprises experienced educators, researchers, and industry professionals who are passionate about nurturing young minds. With diverse backgrounds and expertise across various disciplines, they create an engaging learning environment that challenges students to think critically and innovate. Our teachers are not just educators but mentors who guide students on their academic journey.
+      </p>
+      <div class="section-button">
+        <a href="/faculty" class="btn-primary">Meet Our Faculty</a>
+      </div>
+    </div>
   
+  </section>
 
+  <!-- Academic Programs Section -->
+  <section class="container cont cardm">
+   
+    <div class="about-text">
+      <h2 class="heal2">Academic Excellence</h2>
+      <p>
+        We offer a comprehensive range of academic programs designed to meet the evolving needs of today's students. From traditional disciplines to cutting-edge courses, our curriculum is constantly updated to reflect current industry standards and prepare students for future challenges. Our programs emphasize both theoretical knowledge and practical application.
+      </p>
+      <div class="section-button">
+        <a href="/programs" class="btn-primary">Explore Programs</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Campus Life Section -->
+  <section class="container cont cardm">
+    <div class="about-text">
+      <h2 class="heal2">Campus Life & Activities</h2>
+      <p>
+        Beyond academics, our campus offers a vibrant community life with numerous clubs, sports teams, cultural events, and leadership opportunities. Students can participate in various extracurricular activities that help develop teamwork, leadership skills, and personal growth. Our campus facilities support both learning and recreation.
+      </p>
+      <div class="section-button">
+        <a href="/campus-life" class="btn-primary">Discover Campus Life</a>
+      </div>
+    </div>
+    <div class="about-image">
+      <img src="{% static 'pages_static/life.jpg' %}" alt="Campus Life" loading="lazy"/>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="container cont cardm">
+    <div class="about-image">
+      <img src="{% static 'pages_static/front.webp' %}" alt="Gallery" loading="lazy"/>
+    </div>
+    <div class="about-text">
+      <h2 class="heal2">Photo Gallery</h2>
+      <p>
+        Explore our visual journey through moments that capture the spirit of Christ Church College. From academic achievements to cultural celebrations, sports events to community service, our gallery showcases the diverse and dynamic life of our institution. Each image tells a story of growth, learning, and community.
+      </p>
+      <div class="section-button">
+        <a href="/gallery" class="btn-primary">View Gallery</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="container cont cardm">
+    <div class="about-text">
+      <h2 class="heal2">Get In Touch</h2>
+      <p>
+        We welcome inquiries from prospective students, parents, and community members. Our dedicated staff is here to answer your questions about admissions, programs, campus life, and more. Reach out to us to learn how Christ Church College can be part of your educational journey.
+      </p>
+      <div class="section-button">
+        <a href="/contact" class="btn-primary">Contact Us</a>
+      </div>
+    </div>
+    
+  </section>
+  
+  {% block extra_script %}
+  <script>
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all cont containers
+    document.addEventListener('DOMContentLoaded', function() {
+      const contElements = document.querySelectorAll('.cont');
+      contElements.forEach(element => {
+        observer.observe(element);
+      });
+    });
+  </script>
+  {% endblock %}
+  
   <footer>
-    &copy; 2025 Christ Church College | All rights reserved!
+    <div class="footer-content">
+      <div class="footer-copyright">
+        &copy; 2025 Christ Church College | All rights reserved!
+      </div>
+      <div class="footer-links">
+        <a href="https://maps.google.com/?q=MAHATMA+GANDHI+MARG,+HAZRATGANJ,+LUCKNOW+226001" target="_blank" class="footer-link">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>MAHATMA GANDHI MARG, HAZRATGANJ, LUCKNOW – 226001</span>
+        </a>
+        <a href="tel:0522-2239138" class="footer-link">
+          <i class="fas fa-phone"></i>
+          <span>0522- 2239138</span>
+        </a>
+        <a href="mailto:christchurchcollege.lko@gmail.com" class="footer-link">
+          <i class="fas fa-envelope"></i>
+          <span>christchurchcollege.lko@gmail.com</span>
+        </a>
+      </div>
+    </div>
   </footer>
   {%endblock%}
