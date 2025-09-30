@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     {% load static %}
@@ -26,20 +27,20 @@
             <li>
                 <a href="#">About</a>
                 <ul>
-                    <li><a href="#">Our Vision</a></li>
-                    <li><a href="#">Faculty</a></li>
-                    <li><a href="#">Campus</a></li>
+                    <li><a href="{% url 'vision' %}">Our Vision</a></li>
+                    <li><a href="{% url 'faculty' %}">Faculty</a></li>
+                    <li><a href="{% url 'campus' %}">Campus</a></li>
                 </ul>
             </li>
             <li>
                 <a href="#">Academics</a>
                 <ul>
-                    <li><a href="#">Programs</a></li>
-                    <li><a href="#">Admissions</a></li>
-                    <li><a href="#">Examinations</a></li>
+                    <li><a href="{% url 'programs' %}">Programs</a></li>
+                    <li><a href="{% url 'admissions' %}">Admissions</a></li>
+                    <li><a href="{% url 'examinations' %}">Examinations</a></li>
                 </ul>
             </li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
         </ul>
     </nav>
 

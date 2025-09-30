@@ -15,14 +15,18 @@ body {
     color: #f2f2f2;
     font-size: 1.05rem;
     line-height: 1.8;
+    
   
   }
+ 
   .cardm {
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
     align-items: center;
     justify-content: center;
+    
+    
   }
   
   .about-image img {
@@ -34,6 +38,9 @@ body {
     max-width: 400px;
     padding: 20px;
     border: 2px solid #fff; /* Added border for more visibility */
+  }
+  .about-image img:hover{
+    transform: scale(1.05);
   }
   
   .about-text {
@@ -84,6 +91,9 @@ body {
 .capt-image img:hover {
   transform: scale(1.05);
 }
+
+
+
 
 /* Quote styling */
 .capt-quote {

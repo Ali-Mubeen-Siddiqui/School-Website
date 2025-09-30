@@ -11,12 +11,27 @@
 {%block content%}
   <!-- Login Box -->
   <div class="login-container">
-    <h2>Login to Christ Church College </h2>
-    <form>
+    <h2>Login </h2>
+    <form action="{% url 'loging' %}" method="post">
       {% csrf_token %}
+      
+      <!-- User Type Selection -->
+      <div class="user-type-container">
+        <label class="radio-label">
+          <input type="radio" name="user_type" value="student" checked>
+          <span class="radio-custom"></span>
+          Student
+        </label>
+        <label class="radio-label">
+          <input type="radio" name="user_type" value="staff">
+          <span class="radio-custom"></span>
+          Staff
+        </label>
+      </div>
+      
       <input type="text" placeholder="Username" name="username" required />
       <input type="password" placeholder="Password" name="password" required />
-      <input type="text" placeholder="Student ID" name="student_id" required />
+     
       <button type="submit">Login</button>
     </form>
     <p class="note">Only for students and staff of Christ Church College</p>

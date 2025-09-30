@@ -9,6 +9,42 @@
     transition: background 0.3s, color 0.3s;
   }
 
+  /* Fullscreen, centered layout for login page only */
+  html, body {
+    height: 100%;
+    overflow: hidden; /* No page scroll on any screen size */
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f7fb;
+    padding: 1rem; /* breathing room on small screens */
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Hide global chrome on login page (this stylesheet loads only on login) */
+  header,
+  nav,
+  .sidebar,
+  .sidebar-overlay,
+  footer {
+    display: none !important;
+  }
+.login-btn {
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: 1rem;
+    transition: background 0.3s, color 0.3s;
+  }
+
   .login-btn:hover {
     background: #fff;
     color: #002244;
@@ -18,12 +54,13 @@
   .login-container {
     background: #fff;
     padding: 2rem 3rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     width: 100%;
-    max-width: 400px;
-    margin: 5rem auto;
+    max-width: 420px;
+    margin: 0; /* centered by body flex */
     text-align: center;
+    box-sizing: border-box;
   }
 
   .login-container h2 {
@@ -42,6 +79,8 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .login-container button {
@@ -54,6 +93,7 @@
     border-radius: 4px;
     font-size: 1rem;
     transition: background 0.3s;
+    width: 100%;
   }
 
   .login-container button:hover {
@@ -113,8 +153,93 @@
     font-weight: 900;
   }
 
+  /* User Type Radio Buttons */
+  .user-type-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+  }
+
+  .radio-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #495057;
+    transition: color 0.3s ease;
+    position: relative;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    background: #fff;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .radio-label:hover {
+    color: #002244;
+    background: #f0f8ff;
+    border-color: #002244;
+  }
+
+  .radio-label input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .radio-custom {
+    position: relative;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 0.5rem;
+    background: #fff;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+
+  .radio-label input[type="radio"]:checked + .radio-custom {
+    background: #002244;
+    border-color: #002244;
+  }
+
+  .radio-label input[type="radio"]:checked + .radio-custom::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+  }
+
+  .radio-label input[type="radio"]:checked ~ span:last-child {
+    color: #002244;
+    font-weight: 600;
+  }
+
   /* Responsive adjustments */
   @media (max-width: 480px) {
+    body {
+      padding: 0.75rem;
+      padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
+    }
+
+    .login-container {
+      padding: 1.25rem 1rem;
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    }
+
     .input-group input {
       font-size: 0.9rem;
       padding: 0.7rem 1rem;
@@ -124,6 +249,25 @@
     .toggle-password {
       padding: 0.4rem;
       font-size: 0.9rem;
+    }
+
+    .user-type-container {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 0.8rem;
+    }
+
+    .radio-label {
+      font-size: 0.9rem;
+      padding: 0.4rem 0.8rem;
+    }
+  }
+
+  /* Larger screens: slightly increase density while keeping page unscrollable */
+  @media (min-width: 1200px) {
+    .login-container {
+      max-width: 460px;
+      padding: 2.25rem 3rem;
     }
   }
 
