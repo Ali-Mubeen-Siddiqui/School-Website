@@ -67,6 +67,11 @@ def contact_view(request):
         subject = request.POST.get("subject")
         message = request.POST.get("message")
 
+        error = validate_contact(name,email,subject,message)
+        if error:
+            messages.error(request, error)
+            return redirect("contact")
+
         new_contact = Contact(name=name,email=email,subject=subject,message=message)
         new_contact.save()
         messages.success(request, "Thank you! Your message has been sent.")
@@ -77,3 +82,19 @@ def contact_view(request):
         messages.error(request, "Sorry, something went wrong. Please try again.")
         return redirect("contact")
         
+
+def validate_contact(name,email,subject,message):
+    if not name or not email or not subject or not message:
+        return "All fields are required"
+    if name.strip() == "" or email.strip() == "" or subject.strip() == "" or message.strip() == "":
+        return "All fields are required"
+    if not email.endswith("@gmail.com") or not email.endswith("@yahoo.com") or not email.endswith("@hotmail.com"):
+        return "Invalid email format"
+    if len(name) > 100:
+        return "Name must be less than 100 characters"
+    if len(subject) > 100:
+        return "Subject must be less than 100 characters"
+    if len(message) > 500:
+        return "Message must be less than 500 characters"
+    
+    return None

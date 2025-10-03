@@ -15,7 +15,7 @@
   {%block content%}
 
   <section class="hero">
-    <u><h2 style=""> Welcome to Christ Church College</h2></u>
+    <u><h2 style=""> The Light of Christ Shines To All</h2></u>
   </section>
 
   <section class="container cont cardm">
@@ -23,7 +23,7 @@
       <img src="{% static 'school1.jpg' %}" alt="Christ Church College"  class="mymg"/>
     </div>
     <div class="about-text">
-      <u><h2 class="heal2"></h2></u>
+      <h2 class="heal2">Christ Church College</h2>
       <p>
         Christ Church College is a vibrant and inclusive community of learners, dedicated to providing a world-class education that prepares students for success in an ever-changing world. Our rigorous academic programs, combined with a rich array of extracurricular activities, foster a well-rounded education that cultivates intellectual curiosity, creativity, and critical thinking. With a strong emphasis on character development and spiritual growth, we strive to inspire our students to become compassionate, responsible, and engaged global citizens. Our state-of-the-art facilities, experienced faculty, and supportive staff create a nurturing environment that encourages students to explore their full potential, pursue their passions, and achieve their dreams.
       </p>
@@ -149,27 +149,30 @@
   </footer>
   {% block extra_script %}
   <script>
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
+    (function () {
+      if (window.__contObserverInitialized) return;
+      window.__contObserverInitialized = true;
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate');
-        }
-      });
-    }, observerOptions);
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
 
-    // Observe all cont containers
-    document.addEventListener('DOMContentLoaded', function() {
-      const contElements = document.querySelectorAll('.cont');
-      contElements.forEach(element => {
-        observer.observe(element);
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+          }
+        });
+      }, observerOptions);
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const contElements = document.querySelectorAll('.cont');
+        contElements.forEach((element) => {
+          observer.observe(element);
+        });
       });
-    });
+    })();
   </script>
   {% endblock %}
  
