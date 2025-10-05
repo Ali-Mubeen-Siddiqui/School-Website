@@ -20,4 +20,6 @@ urlpatterns = [
     path('contact_view/', views.contact_view,name="contact_view"),
 
     path('gallery/', views.gallery, name="gallery"),
+   
+
 ]

@@ -1,0 +1,439 @@
+/* Glassy container styling, aligned with contact page */
+.admission-container {
+   /* Theming tokens for this page */
+   --bg: rgba(0, 0, 0, 0.78);
+   --card-bg: rgba(255, 255, 255, 0.06);
+   --card-bg-alt: rgba(255, 255, 255, 0.085);
+   --accent: #4aa3ff; /* light blue accent */
+   --accent-2: #8000ff; /* subtle purple glow used in borders/shadows */
+   width: 100%;
+   max-width: 900px; /* Slightly wider for form density */
+   margin: 2.5rem auto;
+   padding: 2rem 2.25rem;
+   background: var(--bg);
+   color: #fff;
+   border-radius: 12px;
+   backdrop-filter: blur(10px);
+   box-shadow: 0 10px 24px rgba(0,0,0,0.35), 0 0 30px rgba(128, 0, 255, 0.18);
+   border: 1px solid color-mix(in oklab, var(--accent-2) 30%, transparent);
+   box-sizing: border-box;
+   transition: box-shadow 0.3s ease, border-color 0.3s ease;
+   display: grid;
+   gap: 1.5rem; /* Separate instruction and form cards visually */
+}
+
+.admission-container h2 {
+    margin-bottom: 1.5rem;
+    color: #002244;
+    text-align: center;
+    font-size: 2.2rem;
+}
+
+.admission-container h3 {
+    color: #002244;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 0.5rem;
+}
+
+.admission-container h4 {
+    color: #003366;
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.4rem;
+}
+
+.admission-container p {
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    color: #dbe6ff; /* slightly softer for better readability on dark */
+}
+
+/* Headings and text colors for better contrast & consistency */
+.admission-container h2 {
+    color: #ffffff;
+    margin: 0 0 1rem 0;
+}
+
+.admission-container h3 {
+    color: var(--accent);
+}
+
+.admission-container h4 {
+    color: color-mix(in oklab, var(--accent) 80%, white);
+}
+
+.admission-container label {
+    color: #ffffff;
+}
+
+.admission-container ul {
+    color: #dbe6ff;
+}
+.admission-container ul li::marker {
+    color: var(--accent);
+}
+
+.admission-container ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-bottom: 1rem;
+}
+
+.admission-container ul li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.admission-info {
+    margin-bottom: 2rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--card-bg);
+    border-radius: 10px;
+    border: 1px solid color-mix(in oklab, var(--accent) 25%, transparent);
+}
+.admission-info:hover {
+    border-color: color-mix(in oklab, var(--accent-2) 35%, transparent);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.28), 0 0 22px rgba(128, 0, 255, 0.18);
+}
+
+.admission-form-section {
+    margin-top: 2rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--card-bg-alt); /* Differentiated card */
+    border-radius: 10px;
+    border: 1px solid color-mix(in oklab, var(--accent) 25%, transparent);
+}
+.admission-form-section:hover {
+    border-color: color-mix(in oklab, var(--accent-2) 35%, transparent);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.28), 0 0 22px rgba(128, 0, 255, 0.18);
+}
+
+.form-session {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #002244;
+    font-size: 1.1rem;
+}
+
+.admission-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.admission-container input[type="text"],
+.admission-container input[type="email"],
+.admission-container input[type="number"],
+.admission-container input[type="tel"],
+.admission-container textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.08);
+    color: #eef5ff;
+    outline: none;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.admission-container input::placeholder,
+.admission-container textarea::placeholder {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.admission-container input:focus,
+.admission-container textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 35%, transparent);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.admission-container textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.sibling-fields {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.sibling-fields input {
+    flex: 1;
+}
+
+.marks-input-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.marks-input-group input {
+    flex: 1;
+    text-align: center;
+}
+
+.marks-input-group span {
+    font-size: 1.2rem;
+    color: #ffffff;
+}
+
+/* Use global .btn-primary styles from style.css for consistency */
+/* Keep container-level alignment only */
+.admission-container .section-button { 
+    margin-top: 1.5rem;
+}
+
+
+
+/* Radio button styling, consistent with login.html */
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #ffffff;
+    transition: color 0.3s ease;
+    position: relative;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    background: #002244;
+    border: 2px solid color-mix(in oklab, var(--accent) 0%, transparent);
+    transition: all 0.3s ease;
+}
+
+.radio-label:hover {
+    color: #ffffff; /* keep text constant */
+    background: #002244; /* keep dark background for contrast */
+    border-color: var(--accent);
+}
+
+.radio-label input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.radio-custom {
+    position: relative;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 0.5rem;
+    background: #fff;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.radio-label input[type="radio"]:checked + .radio-custom {
+    background: #000000;
+    border-color: var(--accent);
+}
+
+.radio-label input[type="radio"]:checked + .radio-custom::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.radio-label input[type="radio"]:checked ~ span:last-child {
+    color: #ffffff; /* keep text constant when selected */
+    font-weight: 600;
+}
+
+/* Alert message styling, consistent with contact.html */
+.admission-messages {
+    margin: 1rem 0 1.25rem 0;
+    display: grid;
+    gap: 0.6rem;
+}
+
+.admission-alert {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    background: rgba(255, 255, 255, 0.06);
+    color: #eef3ff;
+    transition: opacity 0.25s ease, transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    opacity: 0;
+    transform: translateY(6px);
+}
+
+.admission-alert.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.admission-alert.hiding {
+    opacity: 0;
+    transform: translateY(-6px);
+}
+
+.admission-alert.success {
+    background: rgba(0, 180, 60, 0.12);
+    border-color: rgba(0, 180, 60, 0.35);
+}
+
+.admission-alert.error {
+    background: rgba(220, 20, 60, 0.12);
+    border-color: rgba(220, 20, 60, 0.4);
+}
+
+.admission-alert-icon { width: 10px; height: 10px; border-radius: 50%; flex: 0 0 10px; }
+
+.admission-alert.success .admission-alert-icon { background: #00b43c; }
+
+.admission-alert.error .admission-alert-icon { background: #dc143c; }
+
+.admission-alert-content { flex-grow: 1; }
+
+.admission-alert-close {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 0.25rem;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.admission-alert-close:hover { opacity: 1; }
+
+/* Subtle entrance animation */
+.admission-container { opacity: 0; transform: translateY(24px); animation: admissionFadeIn 0.7s ease 0.15s forwards; }
+@keyframes admissionFadeIn { from { opacity: 0; transform: translateY(24px);} to { opacity: 1; transform: translateY(0);} }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .admission-container {
+        padding: 1.5rem;
+        margin: 2rem 1rem;
+        border-radius: 10px;
+    }
+
+    .admission-container h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .admission-container h3 {
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
+    }
+
+    .admission-container h4 {
+        font-size: 1.2rem;
+    }
+
+    .admission-info, .admission-form-section {
+        padding: 1rem;
+    }
+
+    .form-group label {
+        font-size: 0.95rem;
+    }
+
+    .admission-container input,
+    .admission-container textarea {
+        padding: 0.7rem 0.9rem;
+        font-size: 0.95rem;
+    }
+
+    .sibling-fields {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .marks-input-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+    .marks-input-group input {
+        width: 100%;
+    }
+
+    .radio-group {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .radio-label {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .admission-container .section-button { margin-top: 1.25rem; }
+
+    .signature-notes {
+        padding-top: 1rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .admission-container {
+        padding: 1rem;
+        margin: 1rem auto;
+    }
+
+    .admission-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .admission-container h3 {
+        font-size: 1.3rem;
+    }
+
+    .admission-container h4 {
+        font-size: 1.1rem;
+    }
+
+    .admission-alert {
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .admission-alert-icon {
+        font-size: 1rem;
+    }
+
+    .admission-alert-close {
+        font-size: 1.2rem;
+    }
+}

@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %}Admissions{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'pages_static/style1.css' %}">
+<link rel="stylesheet" href="{% static 'pages_static/style4.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="admission-container">
+    <h2>Admissions at Christ Church College</h2>
+
+    {% if messages %}
+    <div class="admission-messages" role="region" aria-live="polite">
+      {% for message in messages %}
+      <div class="admission-alert {% if message.tags %}{{ message.tags }}{% endif %} fade show" data-timeout="5000">
+        <span class="admission-alert-icon" aria-hidden="true"></span>
+        <div class="admission-alert-content">{{ message }}</div>
+        <button type="button" class="admission-alert-close" aria-label="Close">&times;</button>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <section class="admission-info">
+        <h3>Admissions Information</h3>
+        <p>Admissions are considered on a rolling basis across classes, subject to seat availability.</p>
+        <p>Please complete the requisition form below. The school office will contact you with next steps and schedule any required interaction or assessment.</p>
+        <p>Documents may be requested during processing (for example, a recent report card or birth certificate) and can be submitted when asked.</p>
+    </section>
+
+    <section class="admission-form-section">
+        <h3>ADMISSION REQUISITION FORM</h3>
+        <form action="{% url 'admissions' %}" method="post"> {# Update with a Django URL if a view is created for admission requisitions. #}
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="child_name">Child’s Full Name</label>
+                <input type="text" id="child_name" name="child_full_name" required maxlength="100" autocomplete="on" />
+            </div>
+            <div class="form-group">
+                <label for="father_name">Father’s Name</label>
+                <input type="text" id="father_name" name="father_name" required maxlength="100" autocomplete="on" />
+            </div>
+            <div class="form-group">
+                <label for="mother_name">Mother’s Name</label>
+                <input type="text" id="mother_name" name="mother_name" required maxlength="100" autocomplete="on"/>
+            </div>
+            <div class="form-group">
+                <label for="admission_class">Desired Class</label>
+                <input type="text" id="admission_class" name="admission_class" required maxlength="50" placeholder="e.g., Nursery, 6, 11"  autocomplete="on"/>
+            </div>
+            <div class="form-group">
+                <label for="present_school">Present School</label>
+                <input type="text" id="present_school" name="present_school" required maxlength="100" autocomplete="on"/>
+            </div>
+            <div class="form-group">
+                <div style="margin-bottom: 0.5rem; font-weight: 600; color: #ffffff;">Board</div>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="board" value="CISCE" required>
+                        <span class="radio-custom"></span>
+                        <span>CISCE</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="board" value="CBSE">
+                        <span class="radio-custom"></span>
+                        <span>CBSE</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="board" value="State Board">
+                        <span class="radio-custom"></span>
+                        <span>State Board</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mobile_no">Mobile No.</label>
+                <input type="tel" id="mobile_no" name="mobile_no" required maxlength="20" autocomplete="on"/>
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <textarea id="address" name="address" rows="4" required maxlength="250" autocomplete="on"></textarea>
+            </div>
+            
+            <div class="section-button">
+                <button type="submit" class="btn-primary">Submit Admission Requisition</button>
+            </div>
+
+            
+        </form>
+    </section>
+  </div>
+{% endblock %}
+
+{% block extra_script %}
+<script>
+  (function() {
+    const alerts = document.querySelectorAll('.admission-alert');
+    alerts.forEach(function(alert) {
+      const closeBtn = alert.querySelector('.admission-alert-close');
+      function dismiss() {
+        alert.classList.remove('show');
+        alert.classList.add('hiding');
+        setTimeout(function(){ alert.remove(); }, 250);
+      }
+      if (closeBtn) {
+        closeBtn.addEventListener('click', dismiss);
+      }
+      const timeout = parseInt(alert.getAttribute('data-timeout') || '0', 10);
+      if (timeout > 0) {
+        setTimeout(dismiss, timeout);
+      }
+    });
+  })();
+  </script>
+{% endblock %}
+
