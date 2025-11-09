@@ -1,30 +1,31 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
+from asgiref.sync import sync_to_async
 from .models import Contact,Admission
 
 # Create your views here.
 
-def index(request):
+async def index(request):
     return render(request,"index.html")
 
-def login(request):
+async def login(request):
     return render(request,"login.html")
 
 
 
-def vision(request):
+async def vision(request):
     return render(request, "vision.html")
 
-def faculty(request):
+async def faculty(request):
     return render(request, "faculty.html")
 
-def campus(request):
+async def campus(request):
     return render(request, "campus.html")
 
-def programs(request):
+async def programs(request):
     return render(request, "programs.html")
 
-def admissions(request):
+async def admissions(request):
     if request.method != "POST":
         return render(request, "admission.html")
 
@@ -43,24 +44,26 @@ def admissions(request):
             messages.error(request, error)
             return redirect("admissions")
         
+        # Use sync_to_async for database operations
         new_admission = Admission(child_full_name=child_full_name,father_name=father_name,mother_name=mother_name,admission_class=admission_class,present_school=present_school,board=board,mobile_no=mobile_no,address=address)
-        new_admission.save()
+        save_func = sync_to_async(new_admission.save, thread_sensitive=True)
+        await save_func()
         messages.success(request, "Thank you! Your admission has been submitted.")
         return redirect("admissions")
 
     except Exception as e:
         pass
 
-def examinations(request):
+async def examinations(request):
     return render(request, "examinations.html")
 
-def contact(request):
+async def contact(request):
     return render(request, "contact.html")
 
-def gallery(request):
+async def gallery(request):
     return render(request, "gallery.html")
 
-def login_view(request):
+async def login_view(request):
     # Ensure the view always returns a response
     if request.method != "POST":
         return redirect("login")
@@ -82,7 +85,7 @@ def login_view(request):
     return redirect("login")
 
 
-def contact_view(request):
+async def contact_view(request):
     if request.method != "POST":
         return redirect("contact")
     
@@ -97,8 +100,10 @@ def contact_view(request):
             messages.error(request, error)
             return redirect("contact")
 
+        # Use sync_to_async for database operations
         new_contact = Contact(name=name,email=email,subject=subject,message=message)
-        new_contact.save()
+        save_func = sync_to_async(new_contact.save, thread_sensitive=True)
+        await save_func()
         messages.success(request, "Thank you! Your message has been sent.")
         return redirect("contact")
 

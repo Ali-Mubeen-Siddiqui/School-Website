@@ -15,7 +15,7 @@
   {%block content%}
 
   <section class="hero">
-    <u><h2 style=""> The Light of Christ Shines To All</h2></u>
+    <u><h2 class="gta-pricedown"> The Light of Christ Shines To All</h2></u>
   </section>
 
   <section class="container cont cardm">
@@ -125,53 +125,57 @@
     </div>
     
   </section>
-   
-  <footer>
-    <div class="footer-content">
-      <div class="footer-copyright">
-        &copy; 2025 Christ Church College | All rights reserved!
-      </div>
-      <div class="footer-links">
-        <a href="https://maps.google.com/?q=MAHATMA+GANDHI+MARG,+HAZRATGANJ,+LUCKNOW+226001" target="_blank" class="footer-link">
-          <i class="fas fa-map-marker-alt"></i>
-          <span>MAHATMA GANDHI MARG, HAZRATGANJ, LUCKNOW – 226001</span>
-        </a>
-        <a href="tel:0522-2239138" class="footer-link">
-          <i class="fas fa-phone"></i>
-          <span>0522- 2239138</span>
-        </a>
-        <a href="mailto:christchurchcollege.lko@gmail.com" class="footer-link">
-          <i class="fas fa-envelope"></i>
-          <span>christchurchcollege.lko@gmail.com</span>
-        </a>
-      </div>
-    </div>
-  </footer>
   {% block extra_script %}
   <script>
-    (function () {
+    (async function () {
+      // Prevent multiple initializations
       if (window.__contObserverInitialized) return;
       window.__contObserverInitialized = true;
 
+      // Optimized observer options for better performance
       const observerOptions = {
         threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        rootMargin: '0px',
+        // Use passive observation for better scroll performance
       };
 
+      // Create observer with optimized callback
       const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate');
-          }
+        // Use requestAnimationFrame for smooth animations
+        requestAnimationFrame(() => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate');
+            } else {
+              entry.target.classList.remove('animate');
+            }
+          });
         });
       }, observerOptions);
 
-      document.addEventListener('DOMContentLoaded', function() {
+      // Async initialization - wait for DOM and use idle time
+      const initObserver = () => {
         const contElements = document.querySelectorAll('.cont');
+        // Use forEach with minimal overhead
         contElements.forEach((element) => {
           observer.observe(element);
         });
-      });
+      };
+
+      // Use multiple strategies for fastest initialization
+      if (document.readyState === 'loading') {
+        // DOM is still loading, wait for it
+        document.addEventListener('DOMContentLoaded', initObserver, { once: true });
+      } else {
+        // DOM is already ready, initialize immediately
+        if (window.requestIdleCallback) {
+          // Use idle callback for non-critical initialization
+          requestIdleCallback(initObserver, { timeout: 2000 });
+        } else {
+          // Fallback: use setTimeout for async execution
+          setTimeout(initObserver, 0);
+        }
+      }
     })();
   </script>
   {% endblock %}
