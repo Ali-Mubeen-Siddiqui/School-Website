@@ -1,0 +1,9 @@
+.htmx-request #media-container::after {
+    content: "Loading...";
+    display: block;
+    text-align: center;
+    font-size: 1.2em;
+    color: gray;
+    padding: 20px;
+  }
+  

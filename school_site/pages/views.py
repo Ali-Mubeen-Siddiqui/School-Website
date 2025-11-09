@@ -1,7 +1,10 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from asgiref.sync import sync_to_async
-from .models import Contact,Admission
+from .models import Contact,Admission,Album,AlbumMedia
+from django.core.paginator import Paginator
+from django.shortcuts import get_object_or_404
+
 
 # Create your views here.
 
@@ -60,8 +63,79 @@ async def examinations(request):
 async def contact(request):
     return render(request, "contact.html")
 
+
+
+
+# ---------- GALLERY VIEW ----------
 async def gallery(request):
-    return render(request, "gallery.html")
+    try:
+        # ORM queries
+        albums_qs = await sync_to_async(lambda: list(Album.objects.filter(is_active=True).order_by('-date')))()
+        media_qs = await sync_to_async(lambda: list(AlbumMedia.objects.all().order_by('-uploaded_at')))()
+
+        # Paginator (sync)
+        paginator = await sync_to_async(Paginator)(media_qs, 30)
+        page_obj = await sync_to_async(paginator.get_page)(1)
+
+        context = {
+            'albums': albums_qs,
+            'media_items': page_obj,
+        }
+
+        # render() is sync
+        response = await sync_to_async(render)(request, "gallery/gallery.html", context)
+        return response
+
+    except Exception as e:
+        # messages.error and redirect are sync too
+        await sync_to_async(messages.error)(request, f"Error loading gallery: {e}")
+        print(e)
+        return await sync_to_async(redirect)("home")
+
+        
+# ---------- SPECIFIC ALBUM MEDIA VIEW ----------
+async def album_media(request, slug):
+    try:
+        # ORM
+        album = await sync_to_async(lambda: get_object_or_404(Album, slug=slug))()
+        media_qs = await sync_to_async(lambda: list(album.media_items.all().order_by('-uploaded_at')))()
+
+        # Pagination
+        paginator = await sync_to_async(Paginator)(media_qs, 30)
+        page_obj = await sync_to_async(paginator.get_page)(1)
+
+        context = {
+            'album': album,
+            'media_items': page_obj,
+        }
+
+        # render() is sync
+        response = await sync_to_async(render)(request, "gallery/partials/media_grid.html", context)
+        return response
+
+    except Exception as e:
+        await sync_to_async(messages.error)(request, f"Error loading album: {e}")
+        return await sync_to_async(redirect)("gallery")
+
+    except Exception as e:
+        messages.error(request, f"Error loading album: {e}")
+        return redirect("gallery")
+
+# ---------- PAGINATION FOR ALL MEDIA ----------
+async def gallery_page(request, page):
+    try:
+        media_qs = await sync_to_async(lambda: list(AlbumMedia.objects.all().order_by('-uploaded_at')))()
+
+        paginator = await sync_to_async(Paginator)(media_qs, 30)
+        page_obj = await sync_to_async(paginator.get_page)(page)
+
+        response = await sync_to_async(render)(request, "gallery/partials/media_grid.html", {"media_items": page_obj})
+        return response
+
+    except Exception as e:
+        await sync_to_async(messages.error)(request, f"Error loading page: {e}")
+        return await sync_to_async(redirect)("gallery")
+
 
 async def login_view(request):
     # Ensure the view always returns a response

@@ -20,6 +20,8 @@ urlpatterns = [
     path('contact_view/', views.contact_view,name="contact_view"),
 
     path('gallery/', views.gallery, name="gallery"),
+    path("gallery/album/<slug:slug>/", views.album_media, name="album_media"),
+    path("gallery/page/<int:page>/", views.gallery_page, name="gallery_page"),
    
 
 ]
