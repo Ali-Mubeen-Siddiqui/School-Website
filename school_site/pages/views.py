@@ -70,11 +70,9 @@ async def contact(request):
 async def gallery(request):
     try:
         # ORM queries
-        albums_qs = await sync_to_async(lambda: list(Album.objects.filter(is_active=True).order_by('-date')))()
-        media_qs = await sync_to_async(lambda: list(AlbumMedia.objects.all().order_by('-uploaded_at')))()
-
-        # Paginator (sync)
-        paginator = await sync_to_async(Paginator)(media_qs, 30)
+        albums_qs = await sync_to_async(lambda: Album.objects.filter(is_active=True).order_by('-date'))()
+        media_qs = await sync_to_async(lambda: AlbumMedia.objects.order_by('-uploaded_at'))()
+        paginator = await sync_to_async(Paginator)(media_qs, 2)
         page_obj = await sync_to_async(paginator.get_page)(1)
 
         context = {
@@ -101,7 +99,7 @@ async def album_media(request, slug):
         media_qs = await sync_to_async(lambda: list(album.media_items.all().order_by('-uploaded_at')))()
 
         # Pagination
-        paginator = await sync_to_async(Paginator)(media_qs, 30)
+        paginator = await sync_to_async(Paginator)(media_qs, 2)
         page_obj = await sync_to_async(paginator.get_page)(1)
 
         context = {
@@ -126,7 +124,7 @@ async def gallery_page(request, page):
     try:
         media_qs = await sync_to_async(lambda: list(AlbumMedia.objects.all().order_by('-uploaded_at')))()
 
-        paginator = await sync_to_async(Paginator)(media_qs, 30)
+        paginator = await sync_to_async(Paginator)(media_qs, 2)
         page_obj = await sync_to_async(paginator.get_page)(page)
 
         response = await sync_to_async(render)(request, "gallery/partials/media_grid.html", {"media_items": page_obj})

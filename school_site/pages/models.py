@@ -51,6 +51,7 @@ class Admission(models.Model):
 
 class Album(models.Model):
     title = models.CharField(max_length=100)
+    cover_image = models.ImageField(upload_to='album_covers/', blank=True, null=True)
     description = models.TextField(max_length=500)
     date = models.DateField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
