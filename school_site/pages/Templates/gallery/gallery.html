@@ -1,9 +1,9 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Gallery</title>
+
+{% block title %}Gallery{% endblock %}
+
+{% block extra_head %}
 <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <style>
@@ -179,9 +179,9 @@ window.addEventListener('DOMContentLoaded', function() {
     if(allTab) allTab.classList.add('active');
 });
 </script>
-</head>
-<body>
+{% endblock %}
 
+{% block content %}
 <div class="gallery-header">
     <h1><i class="fas fa-images" style="margin-right:12px;filter:blur(0.1px);color:#00b894;"></i>School Gallery</h1>
     <p>Explore albums of images and videos</p>
@@ -211,6 +211,4 @@ window.addEventListener('DOMContentLoaded', function() {
 
 <!-- Gallery grid container (HTMX target) -->
 <div id="media-grid" hx-get="{% url 'gallery_page' 1 %}" hx-trigger="load"></div>
-
-</body>
-</html>
+{% endblock %}
